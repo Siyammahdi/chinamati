@@ -17,7 +17,7 @@ export default function Hero() {
 
   return (
     <section className="relative px-3 sm:px-4 pt-4 sm:pt-6 pb-8 sm:pb-12 overflow-hidden">
-      <div className="mx-auto max-w-[1600px] bg-[#F2EDE4] rounded-[32px] sm:rounded-[40px] overflow-hidden relative">
+      <div className="mx-auto max-w-[1548px] bg-[#F2EDE4] rounded-[32px] sm:rounded-[32px] overflow-hidden relative">
         <div className="grid lg:grid-cols-12 gap-8 items-center p-5 sm:p-10 lg:p-16">
           
           {/* Left Content */}
