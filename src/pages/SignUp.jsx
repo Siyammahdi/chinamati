@@ -11,8 +11,7 @@ export default function SignUp() {
   const [error, setError] = useState(null)
   const [success, setSuccess] = useState(false)
   const [formData, setFormData] = useState({
-    firstName: '',
-    lastName: '',
+    full_name: '',
     email: '',
     password: ''
   })
@@ -32,8 +31,7 @@ export default function SignUp() {
 
     try {
       const { data, error: signUpError } = await signUp(formData.email, formData.password, {
-        first_name: formData.firstName,
-        last_name: formData.lastName
+        full_name: formData.full_name
       })
 
       if (signUpError) throw signUpError
@@ -110,21 +108,8 @@ export default function SignUp() {
             <div>
               <input
                 type="text"
-                name="firstName"
-                placeholder="First name"
-                value={formData.firstName}
-                onChange={handleChange}
-                required
-                className="w-full px-4 py-3 border border-neutral-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-neutral-900 focus:border-transparent"
-              />
-            </div>
-
-            <div>
-              <input
-                type="text"
-                name="lastName"
-                placeholder="Last name"
-                value={formData.lastName}
+                name="full_name"
+                value={formData.full_name}
                 onChange={handleChange}
                 required
                 className="w-full px-4 py-3 border border-neutral-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-neutral-900 focus:border-transparent"
@@ -135,7 +120,6 @@ export default function SignUp() {
               <input
                 type="email"
                 name="email"
-                placeholder="E-mail"
                 value={formData.email}
                 onChange={handleChange}
                 required
@@ -147,7 +131,6 @@ export default function SignUp() {
               <input
                 type={showPassword ? 'text' : 'password'}
                 name="password"
-                placeholder="Password"
                 value={formData.password}
                 onChange={handleChange}
                 required

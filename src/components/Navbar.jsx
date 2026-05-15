@@ -35,7 +35,7 @@ export default function Navbar() {
             </div>
 
             {/* Desktop Navigation */}
-            <nav className="hidden lg:flex items-center gap-14">
+            <nav className="hidden items-center gap-14">
               {navItems.map((item) => (
                 <a 
                   key={item.label}

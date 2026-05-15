@@ -10,6 +10,17 @@ import {
 import { createPortal } from 'react-dom'
 import { useCart } from '../context/CartContext'
 
+const BANGLADESH_DISTRICTS = [
+  "Dhaka", "Faridpur", "Gazipur", "Gopalganj", "Kishoreganj", "Madaripur", "Manikganj", "Munshiganj", "Narayanganj", "Narsingdi", "Rajbari", "Shariatpur", "Tangail",
+  "Chittagong", "Bandarban", "Brahmanbaria", "Chandpur", "Comilla", "Cox's Bazar", "Feni", "Khagrachhari", "Lakshmipur", "Noakhali", "Rangamati",
+  "Rajshahi", "Bogra", "Chapai Nawabganj", "Joypurhat", "Naogaon", "Natore", "Pabna", "Sirajganj",
+  "Khulna", "Bagerhat", "Chuadanga", "Jashore", "Jhenaidah", "Kushtia", "Magura", "Meherpur", "Narail", "Satkhira",
+  "Barisal", "Barguna", "Bhola", "Jhalokati", "Patuakhali", "Pirojpur",
+  "Sylhet", "Habiganj", "Moulvibazar", "Sunamganj",
+  "Rangpur", "Dinajpur", "Gaibandha", "Kurigram", "Lalmonirhat", "Nilphamari", "Panchagarh", "Thakurgaon",
+  "Mymensingh", "Jamalpur", "Netrokona", "Sherpur"
+]
+
 export default function CartDrawer({ open, onClose }) {
   const {
     cartItems,
@@ -21,15 +32,20 @@ export default function CartDrawer({ open, onClose }) {
 
   const [checkoutStep, setCheckoutStep] = useState('cart') // 'cart', 'checkout', 'success'
   const [orderInfo, setOrderInfo] = useState(null)
+  const [showDistrictDropdown, setShowDistrictDropdown] = useState(false)
+  const [districtSearch, setDistrictSearch] = useState('')
 
   const [formData, setFormData] = useState({
-    firstName: '',
-    lastName: '',
+    full_name: '',
     email: '',
     address: '',
-    city: '',
+    district: '',
     phone: '',
   })
+
+  const filteredDistricts = BANGLADESH_DISTRICTS.filter(district =>
+    district.toLowerCase().includes(districtSearch.toLowerCase())
+  )
 
   // Reset checkout step when drawer closes
   useEffect(() => {
@@ -43,13 +59,26 @@ export default function CartDrawer({ open, onClose }) {
 
   if (typeof document === 'undefined') return null
 
-  const handlePlaceOrder = (e) => {
+  const handlePlaceOrder = async (e) => {
+    console.log('[CartDrawer] Place Order button clicked!')
     e.preventDefault()
-
-    const newOrder = placeOrder(formData)
-
-    setOrderInfo(newOrder)
-    setCheckoutStep('success')
+    try {
+      const orderPayload = {
+        full_name: formData.full_name,
+        email: formData.email,
+        address: `${formData.district}, ${formData.address}`,
+        phone: formData.phone,
+      }
+      console.log('[CartDrawer] Calling placeOrder with orderPayload:', orderPayload)
+      const newOrder = await placeOrder(orderPayload)
+      console.log('[CartDrawer] Order placed:', newOrder)
+      if (newOrder) {
+        setOrderInfo(newOrder)
+        setCheckoutStep('success')
+      }
+    } catch (err) {
+      console.error('[CartDrawer] Error in handlePlaceOrder:', err)
+    }
   }
 
   const handleInputChange = (e) => {
@@ -231,38 +260,19 @@ export default function CartDrawer({ open, onClose }) {
                 onSubmit={handlePlaceOrder}
                 className="space-y-4 py-2"
               >
-                <div className="grid grid-cols-2 gap-4">
-                  <div className="space-y-1">
-                    <label className="text-xs font-semibold uppercase tracking-wider text-neutral-500">
-                      First Name
-                    </label>
+                <div className="space-y-1">
+                  <label className="text-xs font-semibold uppercase tracking-wider text-neutral-500">
+                    Full Name
+                  </label>
 
-                    <input
-                      required
-                      type="text"
-                      name="firstName"
-                      value={formData.firstName}
-                      onChange={handleInputChange}
-                      placeholder="John"
-                      className="w-full rounded-xl border border-neutral-200 px-4 py-3 text-sm transition-colors focus:border-neutral-900 focus:outline-none"
-                    />
-                  </div>
-
-                  <div className="space-y-1">
-                    <label className="text-xs font-semibold uppercase tracking-wider text-neutral-500">
-                      Last Name
-                    </label>
-
-                    <input
-                      required
-                      type="text"
-                      name="lastName"
-                      value={formData.lastName}
-                      onChange={handleInputChange}
-                      placeholder="Doe"
-                      className="w-full rounded-xl border border-neutral-200 px-4 py-3 text-sm transition-colors focus:border-neutral-900 focus:outline-none"
-                    />
-                  </div>
+                  <input
+                    required
+                    type="text"
+                    name="full_name"
+                    value={formData.full_name}
+                    onChange={handleInputChange}
+                    className="w-full rounded-xl border border-neutral-200 px-4 py-3 text-sm transition-colors focus:border-neutral-900 focus:outline-none"
+                  />
                 </div>
 
                 <div className="space-y-1">
@@ -276,42 +286,47 @@ export default function CartDrawer({ open, onClose }) {
                     name="email"
                     value={formData.email}
                     onChange={handleInputChange}
-                    placeholder="john@example.com"
                     className="w-full rounded-xl border border-neutral-200 px-4 py-3 text-sm transition-colors focus:border-neutral-900 focus:outline-none"
                   />
                 </div>
 
-                <div className="space-y-1">
-                  <label className="text-xs font-semibold uppercase tracking-wider text-neutral-500">
-                    Shipping Address
-                  </label>
-
-                  <input
-                    required
-                    type="text"
-                    name="address"
-                    value={formData.address}
-                    onChange={handleInputChange}
-                    placeholder="Street name and number"
-                    className="w-full rounded-xl border border-neutral-200 px-4 py-3 text-sm transition-colors focus:border-neutral-900 focus:outline-none"
-                  />
-                </div>
-
-                <div className="grid grid-cols-2 gap-4">
-                  <div className="space-y-1">
+                                <div className="grid grid-cols-2 gap-4">
+                  <div className="space-y-1 relative">
                     <label className="text-xs font-semibold uppercase tracking-wider text-neutral-500">
-                      City
+                      District
                     </label>
 
                     <input
                       required
                       type="text"
-                      name="city"
-                      value={formData.city}
-                      onChange={handleInputChange}
-                      placeholder="New York"
+                      name="district"
+                      value={formData.district}
+                      onChange={(e) => {
+                        setFormData({ ...formData, district: e.target.value })
+                        setDistrictSearch(e.target.value)
+                        setShowDistrictDropdown(true)
+                      }}
+                      onFocus={() => setShowDistrictDropdown(true)}
+                      onBlur={() => setTimeout(() => setShowDistrictDropdown(false), 200)}
                       className="w-full rounded-xl border border-neutral-200 px-4 py-3 text-sm transition-colors focus:border-neutral-900 focus:outline-none"
                     />
+                    {showDistrictDropdown && filteredDistricts.length > 0 && (
+                      <div className="absolute z-10 w-full mt-1 bg-white border border-neutral-200 rounded-xl shadow-lg max-h-40 overflow-y-auto">
+                        {filteredDistricts.map((district, idx) => (
+                          <div
+                            key={idx}
+                            onMouseDown={() => {
+                              setFormData({ ...formData, district: district })
+                              setDistrictSearch(district)
+                              setShowDistrictDropdown(false)
+                            }}
+                            className="px-4 py-2 text-sm hover:bg-neutral-100 cursor-pointer"
+                          >
+                            {district}
+                          </div>
+                        ))}
+                      </div>
+                    )}
                   </div>
 
                   <div className="space-y-1">
@@ -325,11 +340,27 @@ export default function CartDrawer({ open, onClose }) {
                       name="phone"
                       value={formData.phone}
                       onChange={handleInputChange}
-                      placeholder="+1 234 567 890"
                       className="w-full rounded-xl border border-neutral-200 px-4 py-3 text-sm transition-colors focus:border-neutral-900 focus:outline-none"
                     />
                   </div>
                 </div>
+
+                <div className="space-y-1">
+                  <label className="text-xs font-semibold uppercase tracking-wider text-neutral-500">
+                    Shipping Address
+                  </label>
+
+                  <input
+                    required
+                    type="text"
+                    name="address"
+                    value={formData.address}
+                    onChange={handleInputChange}
+                    className="w-full rounded-xl border border-neutral-200 px-4 py-3 text-sm transition-colors focus:border-neutral-900 focus:outline-none"
+                  />
+                </div>
+
+
 
                 <div className="mt-6 rounded-2xl bg-neutral-50 p-4">
                   <h4 className="mb-2 text-sm font-bold text-neutral-900">
