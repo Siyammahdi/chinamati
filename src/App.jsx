@@ -53,7 +53,7 @@ function AppRoutes() {
   
   return (
     <div>
-      <TopBar />
+      {/* <TopBar /> */}
       <Navbar />
       <SmoothScroll />
       <Routes>

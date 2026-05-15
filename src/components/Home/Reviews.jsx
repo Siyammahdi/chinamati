@@ -1,15 +1,51 @@
-import { useMemo, useRef, useState, useEffect } from 'react'
+import { useRef, useState, useEffect } from 'react'
 import { Swiper, SwiperSlide } from 'swiper/react'
 import { Navigation } from 'swiper/modules'
 
 const REVIEWS = [
-  { name: 'Mehedi', location: 'Riga, LV', text: 'One of my favorites. Liked it too much.', date: 'Oct 23, 2025', rating: 5 },
-  { name: 'Siyam', location: 'Dhaka, BD', text: 'Best electrolytes flavour; helps me drink more.', date: 'Oct 21, 2025', rating: 5 },
-  { name: 'Lourenço', location: 'Lisbon, PT', text: 'Very good! Better than plastic bottles.', date: 'Oct 18, 2025', rating: 5 },
-  { name: 'Shteryu', location: 'Sofia, BG', text: 'Perfect tiny boost of hydration and .', date: 'Oct 16, 2025', rating: 5 },
-  { name: 'Eleni', location: 'Athens, GR', text: 'Love the flavours and subscription flexibility.', date: 'Oct 14, 2025', rating: 4 },
-  { name: 'Jonas', location: 'Berlin, DE', text: 'Refreshing and convenient. Well tasted', date: 'Oct 12, 2025', rating: 4 },
-]
+  {
+    name: 'Masudur Rahman',
+    location: 'Dhaka, BD',
+    text: 'Very useful product. Build quality is solid and works perfectly for daily use.',
+    date: 'May 16, 2026',
+    rating: 5,
+  },
+  {
+    name: 'Nusrat Jahan',
+    location: 'Chattogram, BD',
+    text: 'Accurate and compact. Exactly what I needed for kitchen measurements.',
+    date: 'May 15, 2026',
+    rating: 5,
+  },
+  {
+    name: 'Mehedi Hasan',
+    location: 'Dhaka, BD',
+    text: 'Lightweight and easy to carry. Battery lasts longer than expected.',
+    date: 'May 16, 2026',
+    rating: 4,
+  },
+  {
+    name: 'Foysal Hossain',
+    location: 'Dhaka, BD',
+    text: 'Good accuracy for the price. Using it for parcels and it works well.',
+    date: 'May 16, 2026',
+    rating: 5,
+  },
+  {
+    name: 'Robi Hasan',
+    location: 'Khulna, BD',
+    text: 'Nice product but the display could be a bit brighter in daylight.',
+    date: 'Oct 15, 2025',
+    rating: 4,
+  },
+  {
+    name: 'Fahim Zaman',
+    location: 'Chadpur, BD',
+    text: 'Very helpful for my small business. Makes weighing items super easy.',
+    date: 'Oct 12, 2025',
+    rating: 5,
+  },
+];
 
 function Stars({ n = 5 }) {
   return <div className="text-amber-400 text-xs">{'★★★★★'.slice(0, n)}</div>
@@ -43,7 +79,7 @@ export default function Reviews() {
         <div className="grid items-start gap-10 lg:grid-cols-[360px_1fr]">
           <div>
             <h3 className="text-2xl sm:text-4xl font-extrabold tracking-tight text-neutral-900">What our community<br />says</h3>
-            <p className="mt-3 text-sm text-neutral-600 max-w-xs">Real feedback from people who use our products daily.</p>
+            <p className="mt-3 text-sm text-neutral-600 max-w-xs">Real feedback from people of our facebook community</p>
           </div>
 
           <div className="min-w-0 pb-5">

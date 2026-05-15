@@ -199,26 +199,45 @@ export default function AdminDashboard() {
                   <div className="p-5 rounded-2xl border border-neutral-100">
                     <p className="text-xs font-bold text-neutral-400 uppercase mb-4">Order Items</p>
                     <div className="divide-y divide-neutral-100">
-                      {selectedOrder.items?.map((item, idx) => (
-                        <div key={idx} className="py-4 flex items-center gap-4">
-                          <div className="h-16 w-16 rounded-xl bg-neutral-100 overflow-hidden flex-shrink-0">
-                            <img 
-                              src={item.image} 
-                              alt={item.title} 
-                              className="w-full h-full object-cover"
-                            />
+                      {selectedOrder.items?.map((item, idx) => {
+                        const itemPrice = typeof item.price === 'string' 
+                          ? parseFloat(item.price.replace('৳', '').replace(',', '')) 
+                          : item.price
+                        return (
+                          <div key={idx} className="py-4 flex items-center gap-4">
+                            <div className="h-16 w-16 rounded-xl bg-neutral-100 overflow-hidden flex-shrink-0">
+                              <img 
+                                src={item.image} 
+                                alt={item.title} 
+                                className="w-full h-full object-cover"
+                              />
+                            </div>
+                            <div className="flex-1">
+                              <p className="text-sm font-bold text-neutral-900">{item.title}</p>
+                              <p className="text-xs text-neutral-500">Qty: {item.quantity} × ৳{item.price}</p>
+                            </div>
+                            <div className="text-sm font-bold text-neutral-900">৳{(itemPrice * item.quantity).toLocaleString()}</div>
                           </div>
-                          <div className="flex-1">
-                            <p className="text-sm font-bold text-neutral-900">{item.title}</p>
-                            <p className="text-xs text-neutral-500">Qty: {item.quantity}</p>
-                          </div>
-                          <div className="text-sm font-bold text-neutral-900">৳{item.price}</div>
-                        </div>
-                      ))}
+                        )
+                      })}
                     </div>
-                    <div className="mt-6 pt-4 border-t border-neutral-100 flex items-center justify-between">
-                      <p className="text-sm font-bold text-neutral-400 uppercase">Total</p>
-                      <p className="text-xl font-black text-neutral-900">৳{selectedOrder.total?.toLocaleString()}</p>
+                    <div className="mt-6 pt-4 border-t border-neutral-100 space-y-2">
+                      {selectedOrder.subtotal && (
+                        <div className="flex items-center justify-between text-sm">
+                          <p className="text-neutral-500">Subtotal</p>
+                          <p className="font-medium text-neutral-900">৳{selectedOrder.subtotal?.toLocaleString()}</p>
+                        </div>
+                      )}
+                      {selectedOrder.delivery_charge && (
+                        <div className="flex items-center justify-between text-sm">
+                          <p className="text-neutral-500">Delivery Charge</p>
+                          <p className="font-medium text-neutral-900">৳{selectedOrder.delivery_charge?.toLocaleString()}</p>
+                        </div>
+                      )}
+                      <div className="flex items-center justify-between pt-2 border-t border-neutral-200">
+                        <p className="text-sm font-bold text-neutral-400 uppercase">Total</p>
+                        <p className="text-xl font-black text-neutral-900">৳{selectedOrder.total?.toLocaleString()}</p>
+                      </div>
                     </div>
                   </div>
 

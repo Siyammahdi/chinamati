@@ -27,6 +27,8 @@ export default function CartDrawer({ open, onClose }) {
     removeFromCart,
     updateQuantity,
     cartSubtotal,
+    cartTotal,
+    deliveryCharge,
     placeOrder,
   } = useCart()
 
@@ -381,12 +383,27 @@ export default function CartDrawer({ open, onClose }) {
                   </p>
                 </div>
 
+                <div className="mt-6 rounded-2xl bg-neutral-50 p-4 space-y-2">
+                  <div className="flex items-center justify-between text-sm">
+                    <span className="text-neutral-600">Subtotal</span>
+                    <span className="font-medium text-neutral-900">৳{cartSubtotal.toLocaleString()}</span>
+                  </div>
+                  <div className="flex items-center justify-between text-sm">
+                    <span className="text-neutral-600">Delivery Charge</span>
+                    <span className="font-medium text-neutral-900">৳{deliveryCharge.toLocaleString()}</span>
+                  </div>
+                  <div className="flex items-center justify-between pt-2 border-t border-neutral-200">
+                    <span className="font-bold text-neutral-900">Total</span>
+                    <span className="text-lg font-black text-neutral-900">৳{cartTotal.toLocaleString()}</span>
+                  </div>
+                </div>
+
                 <button
                   type="submit"
-                  className="mt-6 inline-flex w-full items-center justify-center rounded-full bg-neutral-900 px-4 py-4 text-sm font-bold text-white shadow-lg transition-colors hover:bg-neutral-800"
+                  className="mt-4 inline-flex w-full items-center justify-center rounded-full bg-neutral-900 px-4 py-4 text-sm font-bold text-white shadow-lg transition-colors hover:bg-neutral-800"
                 >
                   PLACE ORDER • ৳
-                  {cartSubtotal.toLocaleString()}
+                  {cartTotal.toLocaleString()}
                 </button>
               </form>
             )}
@@ -456,14 +473,31 @@ export default function CartDrawer({ open, onClose }) {
           {/* Footer */}
           {checkoutStep === 'cart' && cartItems.length > 0 && (
             <div className="border-t border-neutral-200 bg-white p-4 sm:p-5">
-              <div className="mb-4 flex items-center justify-between">
-                <span className="font-medium text-neutral-600">
-                  Subtotal
-                </span>
-
-                <span className="text-lg font-bold">
-                  ৳{cartSubtotal.toLocaleString()}
-                </span>
+              <div className="space-y-2 mb-4">
+                <div className="flex items-center justify-between">
+                  <span className="text-sm font-medium text-neutral-600">
+                    Subtotal
+                  </span>
+                  <span className="text-sm font-semibold text-neutral-900">
+                    ৳{cartSubtotal.toLocaleString()}
+                  </span>
+                </div>
+                <div className="flex items-center justify-between">
+                  <span className="text-sm font-medium text-neutral-600">
+                    Delivery Charge
+                  </span>
+                  <span className="text-sm font-semibold text-neutral-900">
+                    ৳{deliveryCharge.toLocaleString()}
+                  </span>
+                </div>
+                <div className="flex items-center justify-between pt-2 border-t border-neutral-200">
+                  <span className="font-bold text-neutral-900">
+                    Total
+                  </span>
+                  <span className="text-lg font-black text-neutral-900">
+                    ৳{cartTotal.toLocaleString()}
+                  </span>
+                </div>
               </div>
 
               <button

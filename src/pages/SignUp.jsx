@@ -98,72 +98,77 @@ export default function SignUp() {
             </span>
           </div>
 
-          {/* Form */}
-          <form onSubmit={handleSubmit} className="space-y-4">
-            {error && (
-              <div className="p-3 bg-rose-50 border border-rose-200 text-rose-600 text-sm rounded-lg">
-                {error}
-              </div>
-            )}
-            <div>
-              <input
-                type="text"
-                name="full_name"
-                value={formData.full_name}
-                onChange={handleChange}
-                required
-                className="w-full px-4 py-3 border border-neutral-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-neutral-900 focus:border-transparent"
-              />
-            </div>
+     {/* Form */}
+<form onSubmit={handleSubmit} className="space-y-4">
+  {error && (
+    <div className="p-3 bg-rose-50 border border-rose-200 text-rose-600 text-sm rounded-lg">
+      {error}
+    </div>
+  )}
 
-            <div>
-              <input
-                type="email"
-                name="email"
-                value={formData.email}
-                onChange={handleChange}
-                required
-                className="w-full px-4 py-3 border border-neutral-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-neutral-900 focus:border-transparent"
-              />
-            </div>
+  <div>
+    <input
+      type="text"
+      name="full_name"
+      value={formData.full_name}
+      onChange={handleChange}
+      placeholder="Full Name"
+      required
+      className="w-full px-4 py-3 border border-neutral-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-neutral-900 focus:border-transparent"
+    />
+  </div>
 
-            <div className="relative">
-              <input
-                type={showPassword ? 'text' : 'password'}
-                name="password"
-                value={formData.password}
-                onChange={handleChange}
-                required
-                className="w-full px-4 py-3 border border-neutral-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-neutral-900 focus:border-transparent pr-12"
-              />
-              <button
-                type="button"
-                onClick={() => setShowPassword(!showPassword)}
-                className="absolute right-3 top-1/2 -translate-y-1/2 text-neutral-500 hover:text-neutral-700"
-              >
-                {showPassword ? (
-                  <FiEyeOff className="h-5 w-5" />
-                ) : (
-                  <FiEye className="h-5 w-5" />
-                )}
-              </button>
-            </div>
+  <div>
+    <input
+      type="email"
+      name="email"
+      value={formData.email}
+      onChange={handleChange}
+      placeholder="Email Address"
+      required
+      className="w-full px-4 py-3 border border-neutral-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-neutral-900 focus:border-transparent"
+    />
+  </div>
 
-            <button
-              type="submit"
-              disabled={loading}
-              className="w-full bg-neutral-900 text-white py-3 px-6 rounded-lg font-semibold hover:bg-neutral-800 transition-colors flex items-center justify-center gap-2 disabled:opacity-50"
-            >
-              {loading ? (
-                <>
-                  <FiLoader className="h-5 w-5 animate-spin" />
-                  CREATING ACCOUNT...
-                </>
-              ) : (
-                'CREATE ACCOUNT'
-              )}
-            </button>
-          </form>
+  <div className="relative">
+    <input
+      type={showPassword ? 'text' : 'password'}
+      name="password"
+      value={formData.password}
+      onChange={handleChange}
+      placeholder="Password"
+      required
+      className="w-full px-4 py-3 border border-neutral-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-neutral-900 focus:border-transparent pr-12"
+    />
+
+    <button
+      type="button"
+      onClick={() => setShowPassword(!showPassword)}
+      className="absolute right-3 top-1/2 -translate-y-1/2 text-neutral-500 hover:text-neutral-700"
+    >
+      {showPassword ? (
+        <FiEyeOff className="h-5 w-5" />
+      ) : (
+        <FiEye className="h-5 w-5" />
+      )}
+    </button>
+  </div>
+
+  <button
+    type="submit"
+    disabled={loading}
+    className="w-full bg-neutral-900 text-white py-3 px-6 rounded-lg font-semibold hover:bg-neutral-800 transition-colors flex items-center justify-center gap-2 disabled:opacity-50"
+  >
+    {loading ? (
+      <>
+        <FiLoader className="h-5 w-5 animate-spin" />
+        CREATING ACCOUNT...
+      </>
+    ) : (
+      'CREATE ACCOUNT'
+    )}
+  </button>
+</form>
 
           {/* Disclaimer */}
           <p className="text-xs text-neutral-600 mt-4 text-center">

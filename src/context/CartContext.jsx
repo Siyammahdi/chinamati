@@ -21,6 +21,8 @@ export function CartProvider({ children }) {
   const [ordersLoading, setOrdersLoading] = useState(true)
 
   const [cartOpen, setCartOpen] = useState(false)
+  
+  const DELIVERY_CHARGE = 90
 
   useEffect(() => {
     localStorage.setItem('cart', JSON.stringify(cartItems))
@@ -126,7 +128,7 @@ export function CartProvider({ children }) {
         id: `OST-${Math.floor(100000 + Math.random() * 900000)}`,
         created_at: new Date().toISOString(),
         items: [...cartItems],
-        total: cartSubtotal,
+        total: cartTotal,
         status: 'Processing',
         user_id: user.id,
         ...orderDetails
@@ -187,6 +189,8 @@ export function CartProvider({ children }) {
     return total + (priceValue * item.quantity)
   }, 0)
 
+  const cartTotal = cartSubtotal + DELIVERY_CHARGE
+
   const openCart = () => setCartOpen(true)
   const closeCart = () => setCartOpen(false)
 
@@ -205,7 +209,9 @@ export function CartProvider({ children }) {
     placeOrder,
     updateOrderStatus,
     cartCount,
-    cartSubtotal
+    cartSubtotal,
+    cartTotal,
+    deliveryCharge: DELIVERY_CHARGE
   }
 
   return <CartContext.Provider value={value}>{children}</CartContext.Provider>

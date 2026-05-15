@@ -14,7 +14,7 @@ export default function FeatureBar() {
   return (
     <div className='px-4 md:px-8 max-w-[1600px] mx-auto mt-4'>
       <div className="max-w-[1600px] mx-auto rounded-lg bg-black overflow-hidden">
-        <div className="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8 py-2 md:py-3">
+        <div className="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8 py-2 md:py-3 hidden">
           <Marquee
             speed={50}
             gradient={false}

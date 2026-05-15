@@ -26,7 +26,7 @@ export default function ProductImageGallery({ images = [], tag }) {
         <img
           src={images[selectedImage]}
           alt="Product"
-          className="w-full h-full object-contain"
+          className="w-full h-full object-cover"
         />
       </div>
 
@@ -46,7 +46,7 @@ export default function ProductImageGallery({ images = [], tag }) {
               <img
                 src={image}
                 alt={`Product view ${index + 1}`}
-                className="w-full h-full object-contain bg-neutral-50"
+                className="w-full h-full object-cover bg-neutral-50"
               />
             </button>
           ))}

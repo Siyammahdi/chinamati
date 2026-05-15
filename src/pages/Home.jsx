@@ -16,7 +16,7 @@ export default function Home() {
       <ProductGrid />
       <ProductSlider />
       <SubscribeBanner />
-      <BrandFeature />
+      {/* <BrandFeature /> */}
       <Reviews />
       <ChallengeBanner />
     </>

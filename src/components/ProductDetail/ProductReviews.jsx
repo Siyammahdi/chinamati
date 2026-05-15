@@ -8,85 +8,85 @@ const REVIEW_DATA = {
   'microdrink-bestseller-set': {
     overallRating: 4.1,
     totalReviews: 413,
-    ratingDistribution: { 5: 280, 4: 85, 3: 28, 2: 15, 1: 5 },
+    ratingDistribution: { 5: 6, 4: 2, 3: 0, 2: 0, 1: 0 },
     reviewImages: [
-      '/product.png',
-      '/product.png',
-      '/product.png',
-      '/product.png',
-      '/product.png',
-      '/product.png',
-      '/product.png',
-      '/product.png',
-      '/product.png',
-      '/product.png'
+      '/review-img/rev-1.jpeg',
+      '/review-img/rev-2.jpeg',
+      '/review-img/rev-3.jpeg',
+      '/review-img/rev-4.jpeg',
+      '/review-img/rev-5.jpeg',
+      '/review-img/rev-6.jpeg',
+      '/review-img/rev-7.jpeg',
+      '/review-img/rev-2.jpeg',
+      '/review-img/rev-6.jpeg',
+      '/review-img/rev-2.jpeg'
     ],
-    reviews: [
-      {
-        name: 'Marilyn',
-        location: 'Denver, US',
-        rating: 5,
-        text: "My grandson really likes them and wants to make sure I get him more!!!!!",
-        date: 'September 16, 2025',
-        verified: true
-      },
-      {
-        name: 'Tracy',
-        location: 'New Canaan, US',
-        rating: 5,
-        text: "Great summer flavors and perfect way to have a variety in my water.",
-        date: 'July 23, 2025',
-        verified: true
-      },
-      {
-        name: 'Julie',
-        location: 'Nashville, United States',
-        rating: 5,
-        text: "I've tried many other flavor drops and packets for sparkling water and this is ",
-        date: 'April 04, 2025',
-        verified: true
-      },
-      {
-        name: 'George',
-        location: 'Waterford, United States',
-        rating: 5,
-        text: "The bestseller set was primo. Can't get enough of the Peach Ginger, awesome!! The other.",
-        date: 'March 27, 2025',
-        verified: true
-      },
-      {
-        name: 'Sarah',
-        location: 'London, UK',
-        rating: 5,
-        text: "Amazing product! The flavors are so natural and refreshing. Perfect for my daily ",
-        date: 'March 15, 2025',
-        verified: true
-      },
-      {
-        name: 'Michael',
-        location: 'Toronto, Canada',
-        rating: 4,
-        text: "Really good quality products. The packaging is excellent and the flavors are spot on!",
-        date: 'March 10, 2025',
-        verified: true
-      },
-      {
-        name: 'Emily',
-        location: 'Sydney, Australia',
-        rating: 5,
-        text: "Love these! Great taste and convenient packaging. My kids love them too.",
-        date: 'February 28, 2025',
-        verified: true
-      },
-      {
-        name: 'David',
-        location: 'Berlin, Germany',
-        rating: 4,
-        text: "Good product overall. The variety pack is perfect for trying different flavors.",
-        date: 'February 20, 2025',
-        verified: true
-      }
-    ]
+   reviews: [
+  {
+    name: 'Rahim Uddin',
+    location: 'Dhaka, Bangladesh',
+    rating: 5,
+    text: "Qurbani time e use korechi. Exact weight diche, full trusted product. Ekdom honest measurement.",
+    date: 'March 12, 2026',
+    verified: true
+  },
+  {
+    name: 'Shakil Ahmed',
+    location: 'Chittagong, Bangladesh',
+    rating: 5,
+    text: "Meat weight measure korte onek useful. No error, very reliable during Qurbani.",
+    date: 'March 13, 2026',
+    verified: true
+  },
+  {
+    name: 'Tushar Rahman',
+    location: 'Sylhet, Bangladesh',
+    rating: 5,
+    text: "Family er sobai use kore satisfied. Fair weight pai, kono doubt thake na.",
+    date: 'March 13, 2026',
+    verified: true
+  },
+  {
+    name: 'Abdul Karim',
+    location: 'Dhaka, Bangladesh',
+    rating: 4,
+    text: "Good quality scale. Accurate reading dey, Qurbani distribution easy hoye jay.",
+    date: 'March 14, 2026',
+    verified: true
+  },
+  {
+    name: 'Mehedi Hasan',
+    location: 'Dhaka, Bangladesh',
+    rating: 5,
+    text: "Onk bhalo product. Honest measurement er jonno ei scale ta best.",
+    date: 'March 14, 2026',
+    verified: true
+  },
+  {
+    name: 'Mohammad Hasan',
+    location: 'Barishal, Bangladesh',
+    rating: 5,
+    text: "Strong build quality and perfect accuracy. Qurbani time e very helpful.",
+    date: 'March 15, 2026',
+    verified: true
+  },
+  {
+    name: 'Farzana Rahman',
+    location: 'Dhaka, Bangladesh',
+    rating: 5,
+    text: "Very satisfied. Meat division now feels fair and transparent.",
+    date: 'March 15, 2026',
+    verified: true
+  },
+  {
+    name: 'Imran Hossain',
+    location: 'Cumilla, Bangladesh',
+    rating: 4,
+    text: "Good product for home use. Easy to use and gives accurate results.",
+    date: 'March 16, 2026',
+    verified: true
+  }
+]
   }
 }
 
@@ -288,7 +288,7 @@ export default function ProductReviews({ productId = 'microdrink-bestseller-set'
 
         {/* Verification Disclaimer */}
         <p className="text-xs text-neutral-500 mb-8 max-w-4xl">
-          Reviews displayed with 'Verified Reviewer' are from customers who can be associated with a specific order at waterdrop®. You can find more information about the review verification process{' '}
+          Reviews displayed with 'Verified Reviewer' are from customers who can be associated with a specific order at chinamati. You can find more information about the review verification process{' '}
           <a href="#" className="text-neutral-900 hover:underline">
             here
           </a>
