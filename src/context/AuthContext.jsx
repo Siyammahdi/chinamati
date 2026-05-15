@@ -85,6 +85,32 @@ export function AuthProvider({ children }) {
     }
   }
 
+  // Update profile
+  const updateProfile = async (updates) => {
+    if (!user) return { error: 'Not authenticated' }
+    
+    try {
+      const { data, error } = await supabase
+        .from('profiles')
+        .upsert({
+          id: user.id,
+          ...updates,
+          updated_at: new Date().toISOString()
+        })
+        .select()
+        .single()
+      
+      if (!error && data) {
+        setProfile(data)
+        return { data, error: null }
+      }
+      return { data: null, error }
+    } catch (err) {
+      console.error('Error updating profile:', err)
+      return { data: null, error: err }
+    }
+  }
+
   useEffect(() => {
     let authSubscription = null
 
@@ -139,7 +165,8 @@ export function AuthProvider({ children }) {
     loading,
     signUp,
     signIn,
-    signOut
+    signOut,
+    updateProfile
   }
 
   return <AuthContext.Provider value={value}>{children}</AuthContext.Provider>

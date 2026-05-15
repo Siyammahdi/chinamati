@@ -23,16 +23,6 @@ export default function MobileBottomNav() {
       active: location.pathname === '/products' || location.pathname.startsWith('/product/')
     },
     {
-      label: 'Search',
-      icon: FiSearch,
-      href: '#',
-      onClick: (e) => {
-        e.preventDefault()
-        // Add search functionality here
-        console.log('Search clicked')
-      }
-    },
-    {
       label: 'Cart',
       icon: FiShoppingBag,
       href: '#',
@@ -54,7 +44,7 @@ export default function MobileBottomNav() {
     <>
       {/* Mobile Bottom Navigation - Only visible on mobile/tablet */}
       <nav className="m-1  rounded-xl fixed bottom-0 left-0 right-0 z-50 bg-white/80 backdrop-blur-lg shadow-[0_-2px_10px_rgba(0,0,0,0.05)] lg:hidden safe-area-inset-bottom">
-        <div className="grid grid-cols-5 h-16 pb-safe">
+        <div className="grid grid-cols-4 h-16 pb-safe">
           {navItems.map((item, index) => {
             const Icon = item.icon
             const isActive = item.active

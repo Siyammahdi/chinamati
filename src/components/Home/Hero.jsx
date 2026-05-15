@@ -51,7 +51,7 @@ export default function Hero() {
                     <div className="flex items-center justify-between">
                       <span className="font-bold text-sm text-neutral-900">{product.price}</span>
                       <button 
-                        className="text-[10px] font-bold text-neutral-900 underline underline-offset-4"
+                        className="text-xs font-bold text-neutral-900 underline underline-offset-4"
                         onClick={() => handleOrderNow(product)}
                       >
                         Order Now
@@ -122,32 +122,32 @@ export default function Hero() {
 
           {/* Right Image Section */}
           <div className="lg:col-span-5 relative mt-8 lg:mt-0">
-            <div className="relative aspect-square sm:aspect-[4/5] lg:aspect-square rounded-[26px] lg:rounded-full overflow-hidden border-[8px] sm:border-[12px] border-white/30 shadow-2xl">
+            <div className="relative aspect-square sm:aspect-[4/5] lg:aspect-square rounded-[26px] lg:rounded-full overflow-hidden border-[=6px] sm:border-[10px] border-white/30 shadow-2xl">
               <img 
-                src="gadget.jpg" 
+                src="https://res.cloudinary.com/dttbj6a0m/image/upload/v1778875287/ChatGPT_Image_May_14_2026_08_17_34_PM_lt1gxe.png" 
                 alt="Main product showcase"
                 className="w-full h-full object-cover"
               />
             </div>
 
             {/* Floating Tags - Hidden on very small screens or repositioned */}
-            <div className="absolute top-[15%] left-0 sm:-left-12 bg-white/90 backdrop-blur-md rounded-2xl p-3  shadow-xl flex items-center gap-3 sm:gap-4 max-w-[140px] sm:max-w-[200px] animate-bounce-slow z-20">
-              <div className="w-12 h-12 sm:w-12 sm:h-12 rounded-xl overflow-hidden flex-shrink-0">
-                <img src="mouse.png" alt="tag product" className="w-full h-full object-cover" />
+            <div className="absolute top-[15%] left-0 sm:-left-12 bg-white/90 backdrop-blur-md rounded-2xl p-2  shadow-xl flex items-center gap-3 sm:gap-4 max-w-[140px] sm:max-w-[200px] animate-bounce-slow z-20">
+              <div className="w-10 h-10 sm:w-12 sm:h-12 rounded-xl overflow-hidden flex-shrink-0">
+                <img src="https://res.cloudinary.com/dttbj6a0m/image/upload/v1778875313/20260516_013552.jpg_zhrdmr.jpg" alt="tag product" className="w-full h-full object-cover" />
               </div>
               <div>
-                <h4 className="font-bold text-[10px] sm:text-xs text-neutral-900">Tech Pouch</h4>
-                <p className="font-bold text-[10px] sm:text-xs mt-0.5">€8,99</p>
+                <h4 className="font-bold text-[10px] sm:text-xs text-neutral-900">Portable &</h4>
+                <p className="font-bold text-[10px] sm:text-xs mt-0.5">Super Durable</p>
               </div>
             </div>
 
             <div className="absolute bottom-[15%] right-0 sm:-right-4 bg-white/90 backdrop-blur-md rounded-2xl p-2  shadow-xl flex items-center gap-3 sm:gap-4 max-w-[140px] sm:max-w-[200px] animate-bounce-slow delay-700 z-20">
               <div className="w-10 h-10 sm:w-12 sm:h-12 rounded-xl overflow-hidden flex-shrink-0">
-                <img src="watch.png" alt="tag product" className="w-full h-full object-cover" />
+                <img src="https://res.cloudinary.com/dttbj6a0m/image/upload/v1778875288/After_Edit_1_Portable_Electronic_Scale_Chinamati_lmybsu.png" alt="tag product" className="w-full h-full object-cover" />
               </div>
               <div>
-                <h4 className="font-bold text-[10px] sm:text-xs text-neutral-900">Cable Organizer</h4>
-                <p className="font-bold text-[10px] sm:text-xs mt-0.5">€9,90</p>
+                <h4 className="font-bold text-[10px] sm:text-xs text-neutral-900">Longer</h4>
+                <p className="font-bold text-[10px] sm:text-xs mt-0.5">Battery Life</p>
               </div>
             </div>
           </div>

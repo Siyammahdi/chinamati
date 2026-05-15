@@ -8,11 +8,11 @@ export default function Footer() {
   return (
     <footer className="bg-white py-12 border-t border-neutral-200">
       <div className="mx-auto max-w-[1600px] px-4 sm:px-6 lg:px-8">
-        <div className="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-3 gap-8">
+        <div className="flex flex-col md:w-[50%] lg:w-full lg:flex-row justify-between gap-8">
           <div className="col-span-2 lg:col-span-1">
             <Link to="/"><h2 className='text-4xl font-semibold mb-4'>Chinamati.</h2></Link>
             <p className="text-sm text-neutral-500 max-w-xs">
-              Redefining movement with minimalist design and maximum performance.
+              Built on trust, and committed to fairness in every product we deliver.
             </p>
           </div>
           

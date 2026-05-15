@@ -82,7 +82,7 @@ export default function SignUp() {
             Sign up for free
           </h1>
           <p className="text-base text-neutral-700 mb-8">
-            Please enter your details below to enjoy exclusive offers and 15% off your order!
+            Please enter your details below to register your account and get exciting offers!
           </p>
 
           {/* Incentive Badges */}

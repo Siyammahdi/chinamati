@@ -360,9 +360,9 @@ export const HERO_PRODUCTS = [
   {
     id: 'mini-weight-scale-machine',
     title: 'Portable Electronic Scale',
-    price: '৳370',
+    price: '৳350',
     image:
-      'https://res.cloudinary.com/dttbj6a0m/image/upload/v1778520015/weight_fmywqy.jpg',
+      'https://res.cloudinary.com/dttbj6a0m/image/upload/v1778875288/After_Edit_1_Portable_Electronic_Scale_Chinamati_lmybsu.png',
     tag: 'Accurate measurement',
   },
 ];
@@ -371,7 +371,7 @@ export const SLIDER_ITEMS = [
   {
     title: 'Portable Electronic Scale',
     image:
-      'https://res.cloudinary.com/dttbj6a0m/image/upload/v1778520015/weight_fmywqy.jpg',
+      'https://res.cloudinary.com/dttbj6a0m/image/upload/v1778875288/After_Edit_1_Portable_Electronic_Scale_Chinamati_lmybsu.png',
     id: 'mini-weight-scale-machine',
   },
 ];

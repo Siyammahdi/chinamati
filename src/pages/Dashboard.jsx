@@ -4,9 +4,175 @@ import { useAuth } from '../context/AuthContext'
 import { FiPackage, FiUser, FiShoppingBag, FiChevronRight, FiClock, FiCheckCircle, FiMapPin, FiMail, FiPhone, FiLogOut, FiSettings, FiArrowLeft } from 'react-icons/fi'
 import { Link, useNavigate } from 'react-router-dom'
 
+function ProfileForm({ profile, user, updateProfile }) {
+  const [formData, setFormData] = useState({
+    full_name: profile?.full_name || '',
+    phone: profile?.phone || '',
+    address: profile?.address || '',
+    district: profile?.district || ''
+  })
+  const [isEditing, setIsEditing] = useState(false)
+  const [isSaving, setIsSaving] = useState(false)
+
+  const handleChange = (e) => {
+    setFormData({ ...formData, [e.target.name]: e.target.value })
+  }
+
+  const handleSave = async () => {
+    setIsSaving(true)
+    const { error } = await updateProfile(formData)
+    if (!error) {
+      setIsEditing(false)
+    }
+    setIsSaving(false)
+  }
+
+  return (
+    <div className="space-y-6">
+      <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
+        <div className="space-y-4">
+          <h4 className="text-xs font-bold text-neutral-400 uppercase tracking-widest">Personal Info</h4>
+          
+          <div className="space-y-4">
+            <div className="space-y-1">
+              <label className="text-xs font-bold text-neutral-500 uppercase">Full Name</label>
+              {isEditing ? (
+                <input
+                  type="text"
+                  name="full_name"
+                  value={formData.full_name}
+                  onChange={handleChange}
+                  className="w-full rounded-xl border border-neutral-200 px-4 py-3 text-sm transition-colors focus:border-neutral-900 focus:outline-none"
+                  placeholder="Enter your full name"
+                />
+              ) : (
+                <div className="p-4 rounded-2xl bg-neutral-50 border border-neutral-100">
+                  <p className="text-sm font-medium text-neutral-900">
+                    {formData.full_name || 'Not set'}
+                  </p>
+                </div>
+              )}
+            </div>
+
+            <div className="space-y-1">
+              <label className="text-xs font-bold text-neutral-500 uppercase">Email Address</label>
+              <div className="p-4 rounded-2xl bg-neutral-50 border border-neutral-100">
+                <p className="text-sm font-medium text-neutral-900">{user?.email}</p>
+                <p className="text-[10px] text-neutral-400 mt-1">Email cannot be changed</p>
+              </div>
+            </div>
+
+            <div className="space-y-1">
+              <label className="text-xs font-bold text-neutral-500 uppercase">Phone Number</label>
+              {isEditing ? (
+                <input
+                  type="tel"
+                  name="phone"
+                  value={formData.phone}
+                  onChange={handleChange}
+                  className="w-full rounded-xl border border-neutral-200 px-4 py-3 text-sm transition-colors focus:border-neutral-900 focus:outline-none"
+                  placeholder="Enter your phone number"
+                />
+              ) : (
+                <div className="p-4 rounded-2xl bg-neutral-50 border border-neutral-100">
+                  <p className="text-sm font-medium text-neutral-900">
+                    {formData.phone || 'Not set'}
+                  </p>
+                </div>
+              )}
+            </div>
+          </div>
+        </div>
+
+        <div className="space-y-4">
+          <h4 className="text-xs font-bold text-neutral-400 uppercase tracking-widest">Delivery Address</h4>
+          
+          <div className="space-y-4">
+            <div className="space-y-1">
+              <label className="text-xs font-bold text-neutral-500 uppercase">District</label>
+              {isEditing ? (
+                <input
+                  type="text"
+                  name="district"
+                  value={formData.district}
+                  onChange={handleChange}
+                  className="w-full rounded-xl border border-neutral-200 px-4 py-3 text-sm transition-colors focus:border-neutral-900 focus:outline-none"
+                  placeholder="e.g., Dhaka"
+                />
+              ) : (
+                <div className="p-4 rounded-2xl bg-neutral-50 border border-neutral-100">
+                  <p className="text-sm font-medium text-neutral-900">
+                    {formData.district || 'Not set'}
+                  </p>
+                </div>
+              )}
+            </div>
+
+            <div className="space-y-1">
+              <label className="text-xs font-bold text-neutral-500 uppercase">Full Address</label>
+              {isEditing ? (
+                <textarea
+                  name="address"
+                  value={formData.address}
+                  onChange={handleChange}
+                  rows={4}
+                  className="w-full rounded-xl border border-neutral-200 px-4 py-3 text-sm transition-colors focus:border-neutral-900 focus:outline-none resize-none"
+                  placeholder="Enter your full delivery address"
+                />
+              ) : (
+                <div className="p-4 rounded-2xl bg-neutral-50 border border-neutral-100">
+                  <p className="text-sm font-medium text-neutral-900">
+                    {formData.address || 'Not set'}
+                  </p>
+                </div>
+              )}
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <div className="flex gap-3 pt-4">
+        {!isEditing ? (
+          <button
+            onClick={() => setIsEditing(true)}
+            className="px-6 py-3 rounded-full bg-neutral-900 text-white font-bold text-sm hover:bg-neutral-800 transition-colors"
+          >
+            Edit Profile
+          </button>
+        ) : (
+          <>
+            <button
+              onClick={() => {
+                setIsEditing(false)
+                setFormData({
+                  full_name: profile?.full_name || '',
+                  phone: profile?.phone || '',
+                  address: profile?.address || '',
+                  district: profile?.district || ''
+                })
+              }}
+              className="px-6 py-3 rounded-full border-2 border-neutral-200 text-neutral-700 font-bold text-sm hover:bg-neutral-50 transition-colors"
+              disabled={isSaving}
+            >
+              Cancel
+            </button>
+            <button
+              onClick={handleSave}
+              className="px-6 py-3 rounded-full bg-neutral-900 text-white font-bold text-sm hover:bg-neutral-800 transition-colors disabled:opacity-50"
+              disabled={isSaving}
+            >
+              {isSaving ? 'Saving...' : 'Save Changes'}
+            </button>
+          </>
+        )}
+      </div>
+    </div>
+  )
+}
+
 export default function Dashboard() {
-  const { orders, cartItems, cartSubtotal, ordersLoading } = useCart()
-  const { user, profile, signOut } = useAuth()
+  const { orders, cartItems, cartSubtotal, ordersLoading, openCart } = useCart()
+  const { user, profile, signOut, updateProfile } = useAuth()
   const navigate = useNavigate()
   const [activeTab, setActiveTab] = useState('orders')
   const [selectedOrder, setSelectedOrder] = useState(null)
@@ -280,33 +446,7 @@ export default function Dashboard() {
                 <div className="space-y-8">
                   <h3 className="text-xl font-bold text-neutral-900 mb-6">Profile Settings</h3>
                   
-                  <div className="grid grid-cols-1 md:grid-cols-2 gap-8">
-                    <div className="space-y-6">
-                      <h4 className="text-xs font-bold text-neutral-400 uppercase tracking-widest">Personal Info</h4>
-                      <div className="space-y-4">
-                        <div className="flex items-center gap-4 p-4 rounded-2xl bg-neutral-50 border border-neutral-100">
-                          <div className="h-10 w-10 rounded-xl bg-white flex items-center justify-center text-neutral-400 shadow-sm">
-                            <FiUser className="h-5 w-5" />
-                          </div>
-                          <div>
-                            <p className="text-[10px] font-bold text-neutral-400 uppercase">Full Name</p>
-                            <p className="text-sm font-bold text-neutral-900">
-                              {profile?.full_name || 'N/A'}
-                            </p>
-                          </div>
-                        </div>
-                        <div className="flex items-center gap-4 p-4 rounded-2xl bg-neutral-50 border border-neutral-100">
-                          <div className="h-10 w-10 rounded-xl bg-white flex items-center justify-center text-neutral-400 shadow-sm">
-                            <FiMail className="h-5 w-5" />
-                          </div>
-                          <div>
-                            <p className="text-[10px] font-bold text-neutral-400 uppercase">Email Address</p>
-                            <p className="text-sm font-bold text-neutral-900">{user?.email}</p>
-                          </div>
-                        </div>
-                      </div>
-                    </div>
-                  </div>
+                  <ProfileForm profile={profile} user={user} updateProfile={updateProfile} />
                 </div>
               )}
 
@@ -363,7 +503,7 @@ export default function Dashboard() {
                         <button 
                           className="w-full py-4 rounded-full bg-neutral-900 text-white font-bold text-sm shadow-xl shadow-neutral-200 hover:bg-neutral-800 transition-all flex items-center justify-center gap-2"
                           onClick={() => {
-                            window.dispatchEvent(new CustomEvent('openCartDrawer'));
+                            openCart();
                           }}
                         >
                           PROCEED TO CHECKOUT
