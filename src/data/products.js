@@ -296,8 +296,8 @@ export const PRODUCTS = {
       'https://res.cloudinary.com/dttbj6a0m/image/upload/v1778875288/After_Edit_1_Portable_Electronic_Scale_Chinamati_lmybsu.png',
     images: [
       'https://res.cloudinary.com/dttbj6a0m/image/upload/v1778875288/After_Edit_1_Portable_Electronic_Scale_Chinamati_lmybsu.png',
-      'https://res.cloudinary.com/dttbj6a0m/image/upload/v1778875287/20260516_013737.jpg_eweeec.jpg',
-      'https://res.cloudinary.com/dttbj6a0m/image/upload/v1778875313/20260516_013552.jpg_zhrdmr.jpg',
+      'https://res.cloudinary.com/dttbj6a0m/image/upload/v1778881324/file_00000000f77471faac1106016103d10b_rvbw8r.png',
+      'https://res.cloudinary.com/dttbj6a0m/image/upload/v1778881324/file_000000009c0871fa9b74541facaf73db_z9zdnq.png',
       'https://res.cloudinary.com/dttbj6a0m/image/upload/v1778875287/ChatGPT_Image_May_14_2026_08_17_34_PM_lt1gxe.png',
     ],
     description:
